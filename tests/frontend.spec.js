@@ -104,7 +104,8 @@ test('responsive layouts, stock assets, messages and navigation have no runtime 
   await page.evaluate(()=>document.fonts.ready);
   for(const width of [1440,1024,768,390]) {
     await page.setViewportSize({width,height:1000});
-    await expect(page.locator('.hero')).toBeVisible();
+    await expect(page.getByRole('heading', {name:'The community patch'})).toBeVisible();
+    await expect(page.locator('.hero')).toHaveCount(0);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await expect(page.getByRole('button', {name:'Saved posts',exact:true})).toHaveCount(0);

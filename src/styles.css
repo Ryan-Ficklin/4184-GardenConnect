@@ -78,3 +78,5 @@
 @media(max-width:950px){
   .top-navigation nav{flex-direction:row;justify-content:flex-end;align-items:center}
 }
+
+.main-area > .feed-layout:first-child{margin-top:0}
