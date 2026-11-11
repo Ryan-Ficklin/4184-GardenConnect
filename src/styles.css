@@ -80,3 +80,5 @@
 }
 
 .main-area > .feed-layout:first-child{margin-top:0}
+.post-card{cursor:pointer}
+.post-card button{cursor:pointer}
