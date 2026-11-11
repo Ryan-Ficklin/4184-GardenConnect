@@ -19,6 +19,7 @@ test('feed search includes comments; filters and sorting compose; user history a
   await page.getByLabel('Sort posts').selectOption('Most liked');
   await expect(page.locator('.post-card').first()).toContainText('fall planting workshop');
   await page.getByRole('button',{name:'Save A little help with my tomatoes?',exact:true}).click();
+  await login(page);
   await page.getByRole('button',{name:'Saved posts',exact:false}).click();
   await expect(page.locator('.post-card')).toHaveCount(1);
   await page.getByRole('button',{name:'Martha Green',exact:true}).click();
@@ -29,7 +30,7 @@ test('feed search includes comments; filters and sorting compose; user history a
 });
 test('account validation, event-only fields, uploaded photos and publishing', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button',{name:'Join the community'}).click();
+  await page.getByRole('button',{name:'Sign up'}).click();
   await page.getByLabel('Username',{exact:true}).fill('New Gardener');
   await page.getByLabel('Password',{exact:true}).fill('garden123');
   await page.getByLabel('Confirm password').fill('mismatch');
@@ -75,8 +76,22 @@ test('likes toggle, comments, nested replies, upvotes and login logout', async (
   await expect(page.locator('.replies')).toContainText(['Thanks for the mulch advice!']);
   const vote=page.getByRole('button',{name:'Upvote comment by Oliver Chen',exact:true});
   await vote.click(); await expect(vote).toContainText('13');
+  await page.getByRole('button',{name:'Account options'}).click();
+  await expect(page.getByRole('button',{name:'Profile',exact:true})).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button',{name:'Account options'})).toBeFocused();
+  await expect(page.getByRole('button',{name:'Log out',exact:true})).toHaveCount(0);
+  await page.getByRole('button',{name:'Account options'}).click();
+  await page.getByRole('button',{name:'Profile',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Test Gardener',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Account options'}).click();
+  await page.getByRole('heading',{name:'Test Gardener',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Log out',exact:true})).toHaveCount(0);
+  await page.getByRole('button',{name:'Account options'}).click();
   await page.getByRole('button',{name:'Log out',exact:true}).click();
   await expect(page.getByRole('button',{name:'Log in',exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Saved posts',exact:true})).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Messages',exact:true})).toHaveCount(0);
   await page.getByRole('button',{name:'Log in',exact:true}).click();
   await page.getByLabel('Username',{exact:true}).fill('Test Gardener');
   await page.getByLabel('Password',{exact:true}).fill('wrong');
@@ -92,6 +107,15 @@ test('responsive layouts, stock assets, messages and navigation have no runtime 
     await expect(page.locator('.hero')).toBeVisible();
     expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
+  await expect(page.getByRole('button', {name:'Saved posts',exact:true})).toHaveCount(0);
+  await expect(page.getByRole('button', {name:'Messages',exact:true})).toHaveCount(0);
+  await login(page);
+  await page.getByRole('button', {name:'Toggle navigation'}).click();
+  await expect(page.getByRole('navigation', {name:'Main navigation'})).toBeVisible();
+  await page.getByRole('button', {name:'Saved posts',exact:false}).click();
+  await expect(page.getByRole('heading', {name:'Your saved posts'})).toBeVisible();
+  await expect(page.getByRole('button', {name:'Toggle navigation'})).toHaveAttribute('aria-expanded', 'false');
+  await page.getByRole('button', {name:'GardenConnect home'}).click();
   await page.setViewportSize({width:1440,height:1000});
   expect(await page.locator('img').evaluateAll(images=>images.every(i=>i.complete && i.naturalWidth>0))).toBe(true);
   expect(await page.locator('.topbar').count()).toBe(1);
