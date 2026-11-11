@@ -1,0 +1,33 @@
+{
+  "name": "4184-gardenconnect",
+  "version": "1.0.0",
+  "description": "GardenConnect is a forum-post style app (a la Reddit) targeted specifically for gardeners looking to grow both plants and community! Users can make posts asking questions about plants, requesting volunteer service, and organizing events to foster a local community.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryan-Ficklin/4184-GardenConnect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Ryan-Ficklin/4184-GardenConnect/issues"
+  },
+  "homepage": "https://github.com/Ryan-Ficklin/4184-GardenConnect#readme",
+  "dependencies": {
+    "lucide-react": "^1.71.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "vite": "^8.3.7"
+  }
+}
