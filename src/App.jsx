@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { ArrowDownUp, ArrowLeft, ArrowRight, ArrowUp, Bookmark, CalendarDays, Check, Flower2, Heart, HelpCircle, Home, ImagePlus, LogIn, LogOut, MapPin, Menu, MessageCircle, Plus, Search, Send, Shovel, Sprout, Users, X } from 'lucide-react';
+import { ArrowDownUp, ArrowLeft, ArrowRight, ArrowUp, Bookmark, CalendarDays, Check, Flower2, Heart, HelpCircle, Home, ImagePlus, LogIn, LogOut, MapPin, Menu, MessageCircle, Plus, Search, Send, Shovel, Sprout, Users, Leaf, X } from 'lucide-react';
 import { initialPosts, people, relativeTime, eventDate, eventTime, selectPosts } from './data';
 
 const typeIcons = { Question: HelpCircle, Event: CalendarDays, Job: Shovel };
