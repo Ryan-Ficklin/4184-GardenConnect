@@ -482,14 +482,14 @@ function App() {
                 >
                   <Bookmark size={19} />
                 </button>
-                <button
+                {/* <button
                   aria-label="Messages"
                   title="Messages"
                   className={isMessages ? "nav-link active" : "nav-link"}
                   onClick={() => navigate("/messages")}
                 >
                   <MessageCircle size={19} />
-                </button>
+                </button> */}
               </>
             )}
           </nav>
