@@ -1,6 +1,6 @@
 # GardenConnect
 
-An interactive React frontend for a gardening community. Built with Vite, React, and Lucide icons. Everything lives in React state; there is no backend, database, authentication service, localStorage, or persistence. Refreshing resets accounts, posts, comments, likes, and saved posts.
+GardenConnect is a forum-post style app (a la Reddit) targeted specifically for gardeners looking to grow both plants and community! Users can make posts asking questions about plants, requesting volunteer service (for people like our user persona Martha who can’t always physically keep up with the demands of a growing garden), and organizing events to foster a local community. 
 
 ## Run locally
 
@@ -11,39 +11,36 @@ npm install
 npm run dev
 ```
 
-Open the local address printed by Vite. `npm run build` creates the production frontend in `dist`; `npm run preview` serves that build.
+Open the local address printed by Vite.
 
-## Features
+## Task Demos
 
-- Session-only login and account creation, password confirmation, logout, and duplicate-account checking. Any new username/password can log in; an existing session account must use its chosen password. This is a demonstration, not secure authentication.
-- Feed filters for questions, events, and jobs; newest/most-liked sorting; case-insensitive search through titles, descriptions, and all comments and replies.
-- New posts with required title, description, and type; up to four JPG, PNG, WebP, or GIF images, each up to 5 MB. Uploaded images remain in memory.
-- Event date and time appear and are required only when Event is selected. Times use the viewer's local time. Events are ordered chronologically in the sidebar.
-- Post detail pages, clickable usernames, searchable and filterable user histories, likes, bookmarks, threaded replies, and comments ordered by highest upvote at every level.
-- Saved-post collection, photo enlargement, empty states, keyboard-accessible dialogs, browser back/forward navigation, and responsive flex layouts.
-- Messages displays a coming-soon page.
+Our demos are based on the tasks we asked our users to complete during low-fidelity prototyping.
 
-## Assignment 5 revisions
+1. Scenario: Imagine you have a question about a dying tomato plant of yours. Use GardenConnect to find answers as to what is causing it to wilt. 
+    - This task is somewhat open-ended. It could either be accomplised by searching for previous similar questions, or posting one of your own
+2. Search for and then save upcoming communities events that interest you.
+3. Post the details of a job that needs to be done at your garden.
 
-The supplied documents were treated as design references. Their testing-script instructions are not application features. All three specified revisions are implemented: event-only required date/time inputs; a single Description field without Additional Information; and clickable usernames opening searchable user-history feeds.
 
-## Design and assets
+## Assets
 
-Palette: cream `#FFEFB3`, bright fern `#71B340`, sage `#669D31`, and forest moss `#598B2C`. Lora is used for the brand and headings; DM Sans for interface and body copy. Fonts load from Google Fonts with Georgia/sans-serif fallbacks. Stock photography is downloaded into `public/images`, so post and banner images do not require a third-party request at runtime. No generated images are used.
+Color pallete generated from coolors.co:
+https://coolors.co/ffefb3-71b340-669d31-598b2c
+- vanilla custard `#FFEFB3`
+- bright fern `#71B340`
+- sage `#669D31`
+- forest moss `#598B2C`. 
 
-Unsplash image sources:
+Fonts from Google Fonts:
+- Lora is used for the brand and headings: https://fonts.google.com/specimen/Lora?preview.layout=grid&query=Lora&preview.script=Latn 
+- DM Sans is used for interface and bodies: https://fonts.google.com/specimen/DM+Sans?preview.layout=grid&query=DM+Sans&preview.script=Latn
 
-- Garden tools / planting: https://images.unsplash.com/photo-1416879595882-3373a0480b5b
-- Tomatoes: https://images.unsplash.com/photo-1592841200221-a6898f307baa
-- Seedlings: https://images.unsplash.com/photo-1466692476868-aef1dfb1e735
+Pictures for dummy data were taken from the free stock photo site pexels.com:
 
-## Browser checks
-
-```sh
-npm test
-```
-
-Playwright uses installed Google Chrome (`channel: 'chrome'`) and starts/reuses a local Vite server on port 5173. Tests cover filtering, comment-text search, sorting, user history, bookmarks, account validation, photo uploads, event fields, publishing, reload reset, likes, threaded replies, comment upvotes, logout, stock asset loading, browser navigation, and overflow at 1440, 1024, 768, and 390 pixels.
+- planting.jpg: https://www.pexels.com/photo/bags-stones-and-bucket-on-ground-12247008/
+- tomatoes.jpg: https://www.pexels.com/photo/red-tomatoes-hanging-from-a-plant-5479379/
+- vegetables.jpg: https://www.pexels.com/photo/sunny-greenhouse-and-garden-in-summer-38852709/
 
 ## Team Contribution
 
