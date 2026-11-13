@@ -30,7 +30,7 @@ https://coolors.co/ffefb3-71b340-669d31-598b2c
 - vanilla custard `#FFEFB3`
 - bright fern `#71B340`
 - sage `#669D31`
-- forest moss `#598B2C`. 
+- forest moss `#598B2C`
 
 Fonts from Google Fonts:
 - Lora is used for the brand and headings: https://fonts.google.com/specimen/Lora?preview.layout=grid&query=Lora&preview.script=Latn 
