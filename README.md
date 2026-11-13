@@ -47,3 +47,9 @@ Playwright uses installed Google Chrome (`channel: 'chrome'`) and starts/reuses 
 
 ## Team Contribution
 
+Atkin: Worked on Comments and Post page
+Ryan: Worked on Main feed page
+Dhvani: Worked on New Post page
+Davin: Worked on Navbar, sign in, sign up
+Alicia: Worked on styling and ui elements
+
