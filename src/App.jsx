@@ -915,28 +915,6 @@ function App() {
                   </div>
                 </form>
               </section>
-              <aside className="posting-tip">
-                <span className="round-icon">
-                  <Leaf size={22} />
-                </span>
-                <h3>
-                  A little thoughtfulness
-                  <br />
-                  goes a long way.
-                </h3>
-                <p>Use a clear title, share the details, and keep it kind.</p>
-                <p>
-                  Planning an event? Include the meeting place in your
-                  description so everyone knows where to gather.
-                </p>
-                <div className="tip-divider" />
-                <Sprout size={30} />
-                <p>
-                  Big ideas start with
-                  <br />
-                  small conversations.
-                </p>
-              </aside>
             </div>
           )}
           {selected && (
