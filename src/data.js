@@ -69,7 +69,7 @@ export const initialPosts = [
     type: "Event",
     title: "Let’s grow together: fall planting workshop",
     author: "Community Gardening Club",
-    body: "Pull on your gardening gloves and join us for a relaxed morning of fall planting at Jose Field. We’ll share tips, sow seasonal vegetables, and enjoy a cup of tea together. All experience levels welcome — just bring your curiosity! Meet by the main garden gate.",
+    body: "Pull on your gardening gloves and join us for a relaxed morning of fall planting at Jose Field. We will be planting spinach, argula, and mustard greens. We also need to harvest the last of our squash crop. All experience levels welcome. Just bring your curiosity (and gloves if you have them)! Meet by the main garden gate.",
     photos: ["/images/vegetables.jpg"],
     date: "2026-11-21",
     time: "10:00",

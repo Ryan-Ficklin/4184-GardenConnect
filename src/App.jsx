@@ -144,6 +144,7 @@ function App() {
   const isMessages = route === "/messages";
   const savedOnly = route === "/saved";
   const isFeed = route === "/" || !!profile || savedOnly;
+  const isHome = route === "/";
   function navigate(path) {
     setAccountOpen(false);
     setMenuOpen(false);
@@ -170,8 +171,10 @@ function App() {
     requireUser(() => navigate("/new"));
   }
   function toggleSave(id) {
-    setSaved((prev) =>
-      prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id],
+    requireUser(() =>
+      setSaved((prev) =>
+        prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id],
+      ),
     );
   }
   function toggleLike(id) {
@@ -530,7 +533,7 @@ function App() {
                     onClick={() => {
                       setUser(null);
                       navigate("/");
-                      setToast("You?ve been logged out.");
+                      setToast("You've been logged out.");
                     }}
                   >
                     <LogOut size={16} />
@@ -583,14 +586,16 @@ function App() {
       )}
       <div className="app-layout">
         <main id="main-content" className="main-area">
+          {(savedOnly || profile) && (
+            <button className="back-link" onClick={() => navigate("/")}>
+              <ArrowLeft size={16} />
+              Back to the community
+            </button>
+          )}
           {isFeed && (
             <>
               {profile && (
                 <section className="profile-header">
-                  <button className="back-link" onClick={() => navigate("/")}>
-                    <ArrowLeft size={16} />
-                    Back to community
-                  </button>
                   <div className="profile-info">
                     <Avatar name={profile} />
                     <div>
@@ -600,23 +605,11 @@ function App() {
                         {people[profile]?.bio ||
                           "Putting down roots in the GardenConnect community."}
                       </p>
-                      <span className="profile-count">
-                        {posts.filter((p) => p.author === profile).length} posts
-                        · User history
-                      </span>
                     </div>
                   </div>
                 </section>
               )}
-              {savedOnly && (
-                <section className="page-intro">
-                  <span className="eyebrow">
-                    A LITTLE INSPIRATION FOR LATER
-                  </span>
-                  <h1>Your saved posts</h1>
-                  <p>Good advice and growing plans, all in one place.</p>
-                </section>
-              )}
+              {savedOnly}
               <div className="feed-layout">
                 <section className="feed-column">
                   <div className="section-heading">
@@ -626,14 +619,14 @@ function App() {
                           ? "Posts & conversations"
                           : savedOnly
                             ? "Your collection"
-                            : "The community patch"}
+                            : "The Community Patch"}
                       </h2>
                       <p>
                         {profile
-                          ? `Explore what ${profile} has been growing and sharing.`
+                          ? `Explore ${profile}'s activity.`
                           : savedOnly
                             ? "Pick up where you left off."
-                            : "Fresh ideas, friendly advice, and a little inspiration."}
+                            : "Find something new!"}
                       </p>
                     </div>
                     <span className="post-count">{filtered.length} posts</span>
@@ -708,7 +701,7 @@ function App() {
                         <p>
                           {savedOnly && !saved.length
                             ? "Tap the bookmark on any post to keep it here."
-                            : "Try another search or filter, or start a new conversation."}
+                            : "Try another search or filter"}
                         </p>
                         <button
                           className="button secondary"
@@ -729,9 +722,7 @@ function App() {
                   {filtered.length > 0 && (
                     <div className="feed-end">
                       <Sprout size={19} />
-                      <span>
-                        You’re all caught up. Time to get your hands dirty.
-                      </span>
+                      <span>You’re all caught up.</span>
                     </div>
                   )}
                 </section>
@@ -745,12 +736,7 @@ function App() {
                   <ArrowLeft size={16} />
                   Back to the community
                 </button>
-                <span className="eyebrow">SOMETHING GOOD STARTS HERE</span>
-                <h1>Plant a conversation.</h1>
-                <p className="page-description">
-                  Share a question, bring people together, or ask for a helping
-                  hand.
-                </p>
+                <h1>Plant a conversation!</h1>
                 <form className="editor-card" onSubmit={publish}>
                   <label className="field-label" htmlFor="post-title">
                     Title <span>Required</span>
@@ -1005,9 +991,7 @@ function App() {
                 </article>
                 <section className="comments-section">
                   <div className="comments-heading">
-                    <h2>
-                      The conversation <span>{selected.comments.length}</span>
-                    </h2>
+                    <h2>The conversation</h2>
                     <span>
                       <ArrowDownUp size={14} />
                       Highest upvotes first
@@ -1022,7 +1006,7 @@ function App() {
                   ) : (
                     <div className="comment-signin">
                       <Sprout size={24} />
-                      <p>Your experience could help someone grow.</p>
+                      <p> Log in to add to the conversation. </p>
                       <button
                         className="button primary compact"
                         onClick={() => {
@@ -1054,9 +1038,7 @@ function App() {
                         />
                       ))}
                     {selected.comments.length === 0 && (
-                      <p className="no-comments">
-                        A fresh conversation. Be the first to say hello.
-                      </p>
+                      <p className="no-comments">Be the first to say hello.</p>
                     )}
                   </div>
                 </section>
@@ -1068,8 +1050,7 @@ function App() {
               <span className="large-icon">
                 <MessageCircle size={38} />
               </span>
-              <span className="eyebrow">A NEW WAY TO CONNECT</span>
-              <h1>Good conversations are growing.</h1>
+              <h1>Under construction.</h1>
               <p>
                 Private messages are coming soon. For now, meet your neighbors
                 in the comments and keep the conversation growing.
@@ -1112,15 +1093,11 @@ function App() {
             <span className="auth-sprout">
               <Sprout size={34} />
             </span>
-            <span className="eyebrow">WELCOME TO GARDENCONNECT</span>
             <h2>
-              {auth === "signup" ? "Put down roots." : "Welcome to the patch."}
-            </h2>
-            <p>
               {auth === "signup"
-                ? "A growing community starts with you."
-                : "Log in to share, ask, and grow together."}
-            </p>
+                ? "Join GardenConnect today!"
+                : "Welcome back to GardenConnect!"}
+            </h2>
             <form key={auth} onSubmit={submitAuth}>
               <label htmlFor="username">Username</label>
               <input
@@ -1180,11 +1157,6 @@ function App() {
                 {auth === "signup" ? "Log in" : "Create an account"}
               </button>
             </p>
-            <small className="session-note">
-              A frontend demo: choose any username and password.
-              <br />
-              Accounts and activity last until you refresh.
-            </small>
           </div>
         )}
       </dialog>
@@ -1232,11 +1204,7 @@ function CommentComposer({ onSubmit, user, reply = false, onCancel }) {
           required
           maxLength={3000}
           rows={reply ? 2 : 3}
-          placeholder={
-            reply
-              ? "Keep the conversation growing…"
-              : "Share a little advice, encouragement, or experience…"
-          }
+          placeholder={reply ? "Type your reply..." : "Type your comment..."}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
