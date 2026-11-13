@@ -44,3 +44,6 @@ npm test
 ```
 
 Playwright uses installed Google Chrome (`channel: 'chrome'`) and starts/reuses a local Vite server on port 5173. Tests cover filtering, comment-text search, sorting, user history, bookmarks, account validation, photo uploads, event fields, publishing, reload reset, likes, threaded replies, comment upvotes, logout, stock asset loading, browser navigation, and overflow at 1440, 1024, 768, and 390 pixels.
+
+## Team Contribution
+
